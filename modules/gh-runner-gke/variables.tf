@@ -195,3 +195,15 @@ variable "spot" {
   description = "A boolean that represents whether the underlying node VMs are spot"
   default     = false
 }
+
+variable "disk_size_gb" {
+  type        = string
+  description = "Size of the disk attached to each node in the node pool, specified in GB. Default is 100GB"
+  default     = "100"
+}
+
+variable "disk_type" {
+  type        = string
+  description = "Type of disk to use. Default: pd-standard."
+  default     = "pd-standard"
+}
