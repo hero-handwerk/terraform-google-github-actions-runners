@@ -20,12 +20,12 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 3.53, < 7"
+      version = ">= 3.53, < 8"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-container-vm/v5.0.0"
+    module_name = "blueprints/terraform/terraform-google-github-actions-runners:gh-runner-mig-container-vm/v5.1.0"
   }
 
 }
