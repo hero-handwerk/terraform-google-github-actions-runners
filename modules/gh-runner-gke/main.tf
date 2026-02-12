@@ -50,24 +50,25 @@ resource "google_compute_subnetwork" "gh-subnetwork" {
   Runner GKE
  *****************************************/
 module "runner-cluster" {
-  source                   = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
-  version                  = "~> 41.0"
-  project_id               = var.project_id
-  name                     = "gh-runner-${var.cluster_suffix}"
-  regional                 = false
-  region                   = var.region
-  zones                    = var.zones
-  network                  = local.network_name
-  network_project_id       = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
-  subnetwork               = local.subnet_name
-  ip_range_pods            = var.ip_range_pods_name
-  ip_range_services        = var.ip_range_services_name
-  logging_service          = "logging.googleapis.com/kubernetes"
-  monitoring_service       = "monitoring.googleapis.com/kubernetes"
-  remove_default_node_pool = true
-  service_account          = local.service_account
-  gce_pd_csi_driver        = true
-  deletion_protection      = false
+  source                     = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster/"
+  version                    = "~> 41.0"
+  project_id                 = var.project_id
+  name                       = "gh-runner-${var.cluster_suffix}"
+  regional                   = false
+  region                     = var.region
+  zones                      = var.zones
+  network                    = local.network_name
+  network_project_id         = var.subnetwork_project != "" ? var.subnetwork_project : var.project_id
+  subnetwork                 = local.subnet_name
+  ip_range_pods              = var.ip_range_pods_name
+  ip_range_services          = var.ip_range_services_name
+  logging_service            = "logging.googleapis.com/kubernetes"
+  monitoring_service         = "monitoring.googleapis.com/kubernetes"
+  remove_default_node_pool   = true
+  service_account            = local.service_account
+  gce_pd_csi_driver          = true
+  deletion_protection        = false
+  dns_allow_external_traffic = var.dns_allow_external_traffic
   node_pools = [
     {
       name                 = "runner-pool"

@@ -207,3 +207,9 @@ variable "disk_type" {
   description = "Type of disk to use. Default: pd-standard."
   default     = "pd-standard"
 }
+
+variable "dns_allow_external_traffic" {
+  type        = bool
+  description = "Allow external traffic to reach the GKE control plane via DNS-based endpoint. Required for cross-project access without VPC peering."
+  default     = null
+}
